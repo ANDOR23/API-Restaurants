@@ -49,7 +49,7 @@ class RestaurantsController < ApplicationController
     #DELETE /restaurants/:id
     def destroy
       @restaurant.destroy
-      rrender json: {Message: 'Restaurant deleted ;)'}, status: :no_content
+      render json: {Message: 'Restaurant deleted ;)'}, status: :no_content
     end
     
     private
