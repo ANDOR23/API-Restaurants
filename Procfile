@@ -1,1 +1,1 @@
-web: bin/rails server -p ${PORT:-5000} -e $RAILS_ENV
+web: rake db:migrate && bin/rails server -p ${PORT:-5000} -e $RAILS_ENV
