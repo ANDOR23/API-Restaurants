@@ -91,4 +91,4 @@ production:
   database: restauranst_production
   username: restauranst
   password: <%= ENV["RESTAURANST_DATABASE_PASSWORD"] %>
-  url: <%= ENV["DATABASE_URL"] %>
+  url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
