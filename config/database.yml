@@ -18,7 +18,7 @@ test:
 production:
   <<: *default
   database: restauranst_production
-  username: restauranst
+  username: andresor
   password: <%= ENV["RESTAURANST_DATABASE_PASSWORD"] %>
   adapter: postgis
   url: <%= ENV.fetch("DATABASE_URL").gsub(/postgres/, 'postgis') %>
