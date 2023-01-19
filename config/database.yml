@@ -88,6 +88,6 @@ test:
 #
 production:
   <<: *default
-  database: restauranst_production
+  database: postgres
   username: restauranst
   password: <%= ENV["RESTAURANST_DATABASE_PASSWORD"] %>
