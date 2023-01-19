@@ -47,8 +47,7 @@ end
 
 group :production do
   gem "pg", "~> 1.1"
-  gem 'activerecord-postgis-adapter'
-  gem "rgeo"
+  
 end
 
 group :development do
