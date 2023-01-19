@@ -4,8 +4,8 @@ class RestaurantsController < ApplicationController
     #GET /restaurants/statistics
     #SENDING A SQL QUERY GIVING THE NECESSARY PARAMS: ?latitude=x&longitude=y&radius=z
     def stadistic
-      @hola = Restaurant.find_by_sql(["SELECT COUNT(*) AS COUNT, AVG(rating) AS AVG, STDDEV(rating) AS STD FROM restaurants WHERE ST_Distance(coordinates, ST_MakePoint(?, ?)) <= ?",params[:longitude].to_f, params[:latitude].to_f, params[:radius].to_i])
-      render json: @hola
+      @stadistics = Restaurant.find_by_sql(["SELECT COUNT(*) AS COUNT, AVG(rating) AS AVG, STDDEV(rating) AS STD FROM restaurants WHERE ST_Distance(coordinates, ST_MakePoint(?, ?)) <= ?",params[:longitude].to_f, params[:latitude].to_f, params[:radius].to_i])
+      render json: @stadistics
     end
 
     #GET ALL THE RESTAURANTS
@@ -26,7 +26,8 @@ class RestaurantsController < ApplicationController
     def create
       @restaurant = Restaurant.new(restaurant_params)
       if @restaurant.save
-          render json: @restaurant, status: :created
+          render json: {:Message => 'Restaurant created ;)',
+                        :data => @restaurant}, status: :created
       else
           render json: { errors: @restaurant.errors.full_messages },
           status: :unprocessable_entity
@@ -39,6 +40,8 @@ class RestaurantsController < ApplicationController
       unless @restaurant.update(restaurant_params)
       render json: { errors: @restaurant.errors.full_messages },
              status: :unprocessable_entity
+      else 
+        render json: {Message: 'Restaurant updated ;)'}, status: :ok
       end
     end
     
@@ -46,6 +49,7 @@ class RestaurantsController < ApplicationController
     #DELETE /restaurants/:id
     def destroy
       @restaurant.destroy
+      rrender json: {Message: 'Restaurant deleted ;)'}, status: :no_content
     end
     
     private
