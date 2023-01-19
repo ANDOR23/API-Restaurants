@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_18_092908) do
     t.string "state"
     t.float "lat"
     t.float "lng"
-    t.geography "coordinates", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}, null: false #IT WAS NECESSARY TO CREATE THIS COLUMN TO DO THE OPERATIONS WITH POSTGIS
+    t.geography "coordinates", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["coordinates"], name: "index_restaurants_on_coordinates", using: :gist
