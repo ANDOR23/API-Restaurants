@@ -15,7 +15,7 @@
 # gem "pg"
 #
 default: &default
-  adapter: postgis
+  adapter: postgresql
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
@@ -24,8 +24,9 @@ default: &default
 development:
   <<: *default
   database: restauranst_development
-  username: andresor
-  password: '1234'
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
 
 
   # The specified database role being used to connect to postgres.
@@ -60,6 +61,9 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
   database: restauranst_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
